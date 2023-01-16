@@ -1,0 +1,15 @@
+﻿@using BKIZ.Models
+
+@{  
+    ViewBag.Title = "Statisitcs";  
+}  
+
+<h3>Aktualne statystyki sieci Helium:</h3>  
+@{   
+    var data = ViewBag.Message;    
+}  
+<h3>Token Supply: @data.data.token_supply</h3> 
+<h3>Liczba hotspotów: @data.data.counts.hotspots</h3>  
+<h3>Liczba włączonych hotspotów: @data.data.counts.hotspots_online</h3>  
+<h3>W @data.data.counts.countries krajach</h3>  
+<h3>W @data.data.counts.cities miastach</h3>  

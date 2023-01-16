@@ -1,0 +1,16 @@
+﻿@model BKIZ.Models.Profitability
+
+@using (Html.BeginForm("Result","Profitability", FormMethod.Post))
+{
+    <h1>Tutaj możesz sprawdzić szacunkowy okres po którym zwróci się zakup Hotspotu</h1>  
+    <h4>Aktualna cena HNT (w USD):
+        @Html.TextBoxFor(model => model.CurrentHNTMarketPrice)
+        @Html.ValidationMessageFor(model => model.CurrentHNTMarketPrice)
+    </h4>
+
+    <h4>Kosz Hostpota (w USD)
+        @Html.TextBoxFor(model => model.CostOfHotspot)
+        @Html.ValidationMessageFor(model => model.CostOfHotspot)
+    </h4>
+    <button type="submit">Sprawdź opłacalność</button>
+}
