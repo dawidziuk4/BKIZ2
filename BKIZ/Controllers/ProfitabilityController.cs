@@ -7,7 +7,7 @@ namespace BKIZ.Controllers
 {
     public class ProfitabilityController : Controller
     {
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             return View();
         }
@@ -31,7 +31,7 @@ namespace BKIZ.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await client.GetStringAsync(path);
-                    Root data = JsonConvert.DeserializeObject<Root>(json);
+                    StatsRoot data = JsonConvert.DeserializeObject<StatsRoot>(json);
                     numberOfHotSpots = data.data.counts.hotspots_online;
                 }
 
@@ -47,8 +47,8 @@ namespace BKIZ.Controllers
                 }
 
                 var monthlyAvgRewardsPerHotspot = amountOfMintedHNTdaily / numberOfHotSpots * 30;
-                var numOfMonths = model.CostOfHotspot / monthlyAvgRewardsPerHotspot;
-                ViewBag.Message = numOfMonths.ToString();
+                var numOfMonths = model.CostOfHotspot / (monthlyAvgRewardsPerHotspot * model.CurrentHNTMarketPrice);
+                ViewBag.Message = Math.Round(numOfMonths).ToString();
             }
 
             return View();

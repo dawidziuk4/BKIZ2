@@ -1,0 +1,16 @@
+﻿@{  
+    ViewBag.Title = "Hotspot";  
+}  
+
+<h3></h3>  
+@{   
+    var data = ViewBag.Message;    
+}  
+<h1>Dla Hotspotu o nazwie: @data.data[0].name sczytano następujące informacje:</h1> 
+<h3>Kraj: @data.data[0].geocode.long_country</h3>  
+<h3>Miasto: @data.data[0].geocode.long_city</h3>  
+<h3>Ulica: @data.data[0].geocode.long_street</h3>  
+<h3>Skala zarobków: @data.data[0].reward_scale</h3>
+
+
+

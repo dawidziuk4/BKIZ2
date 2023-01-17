@@ -1,0 +1,11 @@
+﻿@model BKIZ.Models.HotspotName
+
+@using (Html.BeginForm("Result","Hotspot", FormMethod.Post))
+{
+    <h1>Tutaj możesz sprawdzić informacje o Hotspocie</h1>  
+    <h4>Podaj nazwę hotspota:
+        @Html.TextBoxFor(model => model.name)
+        @Html.ValidationMessageFor(model => model.name)
+    </h4>
+    <button type="submit">Sprawdź Hotspota!</button>
+}
