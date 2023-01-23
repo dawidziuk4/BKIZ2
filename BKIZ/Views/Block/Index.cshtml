@@ -1,0 +1,24 @@
+﻿@model BKIZ.Models.Block.BlockData
+
+@{
+    ViewData["Title"] = "Block";
+}
+
+@{   
+    var data = ViewBag.Message;    
+} 
+
+<div class="text-center">
+    <h1 class="display-4">Informacje o blokach w sieci.</h1>
+    <h2>Aktualnie wysokość bloku wynosi: @data.data.height</h2>
+</div>
+
+@using (Html.BeginForm("Result","Block", FormMethod.Post))
+{
+    <h1>Sprawdź informacje o blocku.</h1>  
+    <h4>Podaj wysokośc blocku, którego chcesz sprawdzić: 
+        @Html.TextBoxFor(model => model.height)
+        @Html.ValidationMessageFor(model => model.height)
+    </h4>
+    <button type="submit">Sprawdź block</button>
+}

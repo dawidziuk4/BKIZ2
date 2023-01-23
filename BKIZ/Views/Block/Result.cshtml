@@ -1,0 +1,17 @@
+﻿@{  
+    ViewBag.Title = "Block";  
+}  
+
+
+@{   
+    var data = ViewBag.Message;    
+} 
+
+<h1>Informacje o blocku @data.data.height</h1> 
+<h4>Liczba transakcji: @data.data.transaction_count</h4>
+<h4>Data: @data.data.datetime</h4>
+<h4>Popredzni hash: @data.data.prev_hash</h4>
+<h4>Obecny hash: @data.data.hash</h4>
+
+
+

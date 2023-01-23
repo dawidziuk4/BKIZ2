@@ -1,5 +1,5 @@
     public class RootRewards
     {
-        public Meta meta { get; set; }
+        public RewardsMonthlyMeta meta { get; set; }
         public List<Rewards> data { get; set; }
     }

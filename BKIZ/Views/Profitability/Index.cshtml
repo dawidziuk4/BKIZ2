@@ -1,5 +1,8 @@
 ﻿@model BKIZ.Models.Profitability
 
+@{  
+    ViewBag.Title = "Profitability";  
+}  
 @using (Html.BeginForm("Result","Profitability", FormMethod.Post))
 {
     <h1>Tutaj możesz sprawdzić szacunkowy okres po którym zwróci się zakup Hotspotu</h1>  
@@ -14,3 +17,79 @@
     </h4>
     <button type="submit">Sprawdź opłacalność</button>
 }
+
+@{   
+    var data = ViewBag.Message;    
+} 
+
+
+<div>
+  <canvas id="rewardChart"></canvas>
+  <canvas id="hntChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('rewardChart');
+
+  var chartData = JSON.parse('@Html.Raw(Json.Serialize(@ViewBag.ChartData))');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+      datasets: [{
+        label: 'Średnie ilość wykopanych HNT przez jednego Hotspota',
+        data: chartData,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx2 = document.getElementById('hntChart');
+
+  new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+      datasets: [{
+        label: 'Średnia wartość tokena HNT',
+        data: [38,
+            28,
+            25,
+            24.1,
+            13.4,
+            9.5,
+            9,
+            9.3,
+            5.41,
+            5.3,
+            4,
+            2.41
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+<div>
+    <h5>Po dokładniejsze informacje na temat wartości HNT przejdź na strone <a href="https://coinmarketcap.com/pl/currencies/helium/">CoinMarketCap</a> </h5> 
+    <h5>
+        Pamiętaj o co dwuletnim halvingu na przestrzeni lipca i sierpnia.
+    </h5>
+</div>
